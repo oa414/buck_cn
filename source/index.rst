@@ -20,6 +20,9 @@ http://facebook.github.io/buck/ 的翻译。
 
    overview
    quick_start
+   install
+   concepts/build_rule
+
 
 
 

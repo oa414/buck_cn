@@ -10,6 +10,8 @@ Welcome to Buck Document Chinese Translation's documentation!
 
 http://facebook.github.io/buck/ 的翻译。
 
+译文源文件: https://github.com/oa414/buck_cn
+
 
 
 
@@ -18,6 +20,9 @@ http://facebook.github.io/buck/ 的翻译。
 
    overview
    quick_start
+   install
+   concepts/build_rule
+
 
 
 
