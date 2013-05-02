@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>观念 &mdash; Buck Document Chinese Translation 0.0.1 documentation</title>
+    <title>构建目标 &mdash; Buck Document Chinese Translation 0.0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,9 +25,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="Buck Document Chinese Translation 0.0.1 documentation" href="../index.html" />
-    <link rel="next" title="构建规则" href="build_rule.html" />
-    <link rel="prev" title="下载和安装Buck" href="../install.html" /> 
+    <link rel="top" title="Buck Document Chinese Translation 0.0.1 documentation" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,12 +34,6 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="build_rule.html" title="构建规则"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="../install.html" title="下载和安装Buck"
-             accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -52,16 +44,29 @@
           <div class="body">
             
   <div class="section" id="id1">
-<h1>观念<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="build_rule.html">构建规则</a></li>
-<li class="toctree-l1"><a class="reference internal" href="build_target.html">构建目标</a></li>
-<li class="toctree-l1"><a class="reference internal" href="build_file.html">buck文件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="buckversion.html">buck版本</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nobuckcheck.html">.nobuckcheck</a></li>
-</ul>
+<h1>构建目标<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>一个构建目标是一个标识一个构建规则的字符串</p>
+<p>这里有一个简单的何方的构建目标：</p>
+<div class="highlight-python"><pre>//java/com/facebook/share:ui</pre>
 </div>
+<p>一个合格的构建目标由三个部分构成：</p>
+<ol class="arabic simple">
+<li>// 前缀表示关于你项目的相对路径。</li>
+<li>java/com/facebook/share 部分表示构建文件可以在这个目录下找到</li>
+<li>:ui表示构建规则的名字，构建规则的名字必须和构建文件一样是唯一的。</li>
+</ol>
+<p>一个相对的构建规则可以用来参考另外用同样构建文件的构建目标，一个相关构建规则用:开始，之后之是第三方的组成部分（或者说是短名字，）。比如，参考java/com/facebook/share/BUCK， :ui可以用来参考//java/com/facebook/share:ui:</p>
+<div class="highlight-python"><pre>        # This is in java/com/facebook/share/BUCK.
+  java_binary(
+  name = 'ui_jar',
+  deps = [
+    # This would be the same as using:
+    # '//java/com/facebook/share:ui'
+    ':ui',
+  ],
+)</pre>
+</div>
+<p>构建目标通常用作构建规则的参数，以及Buck命令行的接口</p>
 </div>
 
 
@@ -70,15 +75,9 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="../install.html"
-                        title="previous chapter">下载和安装Buck</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="build_rule.html"
-                        title="next chapter">构建规则</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/concepts/index.txt"
+    <li><a href="../_sources/concepts/build_target.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -104,12 +103,6 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="right" >
-          <a href="build_rule.html" title="构建规则"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="../install.html" title="下载和安装Buck"
-             >previous</a> |</li>
         <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>

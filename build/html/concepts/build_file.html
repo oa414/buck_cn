@@ -1,0 +1,134 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>buck文件 &mdash; Buck Document Chinese Translation 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Buck Document Chinese Translation 0.0.1 documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="buck">
+<h1>buck文件<a class="headerlink" href="#buck" title="Permalink to this headline">¶</a></h1>
+<p>你的项目里的构建文件只有是最靠近你项目的文件树的直接祖先的时候，才被当作构建文件处理。比如，在你的项目里有以下构建文件：</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">java</span><span class="o">/</span><span class="n">com</span><span class="o">/</span><span class="n">facebook</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">BUCK</span>
+<span class="n">java</span><span class="o">/</span><span class="n">com</span><span class="o">/</span><span class="n">facebook</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">BUCK</span>
+<span class="n">java</span><span class="o">/</span><span class="n">com</span><span class="o">/</span><span class="n">facebook</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">collect</span><span class="o">/</span><span class="n">BUCK</span>
+</pre></div>
+</div>
+<p>你的构建文件会有以下约束</p>
+<blockquote>
+<div>java/com/facebook/base/BUCK 的规则只对 java/com/facebook/base/ 下的文件有效</div></blockquote>
+<p>java/com/facebook/common/ 对目录下除了java/com/facebook/common/collect的所有文件有效</p>
+<p>这些源文件也被叫做构建包。</p>
+<p>如果要跨构建包访问一些代码，办法是在构建规则里面建立deps，指向其他代码。回到签名的例子，假如java/com/facebook/common/concurrent/ 的代码依赖于java/com/facebook/common/collect/的代码，假设java/com/facebook/common/collect/BUCK 有一个这样的构建规则：</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">java_library</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;collect&#39;</span><span class="p">,</span>
+  <span class="n">srcs</span> <span class="o">=</span> <span class="n">glob</span><span class="p">([</span><span class="s">&#39;*.java&#39;</span><span class="p">]),</span>
+  <span class="n">deps</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;//java/com/facebook/base:base&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>java/com/facebook/common/BUCK 可以有这样一个构建规则：</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">java_library</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;concurrent&#39;</span><span class="p">,</span>
+  <span class="n">srcs</span> <span class="o">=</span> <span class="n">glob</span><span class="p">([</span><span class="s">&#39;concurrent/*.java&#39;</span><span class="p">]),</span>
+  <span class="n">deps</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;//java/com/facebook/base:base&#39;</span><span class="p">,</span>
+    <span class="s">&#39;//java/com/facebook/common/collect:collect&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>但是下面的例子是非法的。因为java/com/facebook/common/collect/ 有自己的构建文件，所以不能把java/com/facebook/common/collect/<a href="#id1"><span class="problematic" id="id2">*</span></a>.java 作为它的源文件。</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">java_library</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;concurrent&#39;</span><span class="p">,</span>
+  <span class="n">srcs</span> <span class="o">=</span> <span class="n">glob</span><span class="p">([</span><span class="s">&#39;collect/*.java&#39;</span><span class="p">,</span> <span class="s">&#39;concurrent/*.java&#39;</span><span class="p">]),</span>
+  <span class="n">deps</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;//java/com/facebook/base:base&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/concepts/build_file.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Lin Xiangyu.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

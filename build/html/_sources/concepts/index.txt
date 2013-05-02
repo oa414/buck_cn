@@ -5,7 +5,9 @@
 
 
 .. toctree::
-   :maxdepth: 2
-
 
    	build_rule
+   	build_target
+   	build_file
+   	buckversion
+   	nobuckcheck
