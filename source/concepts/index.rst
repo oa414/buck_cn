@@ -11,3 +11,6 @@
    	build_file
    	buckversion
    	nobuckcheck
+
+
+   	buckconfig（未完成）
