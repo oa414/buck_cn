@@ -56,43 +56,36 @@
   <div class="section" id="android-library">
 <h1>android_library<a class="headerlink" href="#android-library" title="Permalink to this headline">¶</a></h1>
 <p>android_library目标用来定义一系列的java文件。android_library规则的输出目标是一个包含了以及编译的class文件和资源文件的jar包</p>
-<p>参数</p>
+<div class="section" id="id1">
+<h2>参数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li></li>
+<li>name （必须） 规则的名字</li>
+<li>src （默认是[]） 这个规则编译的java文件</li>
+<li>resource 默认是[] 包含在已编译的.class文件里的静态文件。这些文件可以用Class.getResource进行装载</li>
 </ul>
-<p>name （必须） 规则的名字</p>
-<ul class="simple">
-<li></li>
-</ul>
-<p>src （默认是[]） 这个规则编译的java文件
--
-resource 默认是[] 包含在已编译的.class文件里的静态文件。这些文件可以用Class.getResource进行装载</p>
 <p>注意 buck用buckconfig.html里的src_roots来帮助确定哪里的resource应该被放置到生成的jar文件里面</p>
 <ul class="simple">
 <li>deps( 默认是[])规则。（通常是另外一个android_library）用来生成编译这个android_library需要的classpath</li>
-<li></li>
 </ul>
-<div class="section" id="id1">
-<h2>例子<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id2">
+<h2>例子<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>一个android_library规则以及一个android_resource规则。这是一个http://developer.android.com/tools/projects/index.html定义的通常情况下android库项目</p>
-<dl class="docutils">
-<dt>android_resource(</dt>
-<dd>name = &#8216;res&#8217;,
-res = &#8216;res&#8217;,
-package = &#8216;com.example&#8217;,</dd>
-</dl>
-<p>)</p>
-<dl class="docutils">
-<dt>android_library(</dt>
-<dd><p class="first">name = &#8216;my_library&#8217;,
-srcs = glob([&#8216;src/<a href="#id2"><span class="problematic" id="id3">**</span></a>/<a href="#id4"><span class="problematic" id="id5">*</span></a>.java&#8217;]),
-deps = [</p>
-<blockquote>
-<div>&#8216;:res&#8217;,</div></blockquote>
-<p class="last">],</p>
-</dd>
-</dl>
-<p>)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">android_resource</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;res&#39;</span><span class="p">,</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="s">&#39;res&#39;</span><span class="p">,</span>
+  <span class="n">package</span> <span class="o">=</span> <span class="s">&#39;com.example&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">android_library</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;my_library&#39;</span><span class="p">,</span>
+  <span class="n">srcs</span> <span class="o">=</span> <span class="n">glob</span><span class="p">([</span><span class="s">&#39;src/**/*.java&#39;</span><span class="p">]),</span>
+  <span class="n">deps</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;:res&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -105,7 +98,8 @@ deps = [</p>
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">android_library</a><ul>
-<li><a class="reference internal" href="#id1">例子</a></li>
+<li><a class="reference internal" href="#id1">参数</a></li>
+<li><a class="reference internal" href="#id2">例子</a></li>
 </ul>
 </li>
 </ul>

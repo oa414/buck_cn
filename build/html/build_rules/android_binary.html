@@ -65,71 +65,68 @@
 <li>target(必须)构建APK的目标Android版本。在传统Android 项目中，通常在project.properties文件定义，通常是类似Google Inc.:Google APIs:16</li>
 <li>keystore_properties(必须) 定义keystore属性的.properties文件的相对路径。</li>
 </ul>
-<p>key.store=debug.keystore
-key.alias=my_alias
-key.store.password=android
-key.alias.password=android</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">key</span><span class="o">.</span><span class="n">store</span><span class="o">=</span><span class="n">debug</span><span class="o">.</span><span class="n">keystore</span>
+<span class="n">key</span><span class="o">.</span><span class="n">alias</span><span class="o">=</span><span class="n">my_alias</span>
+<span class="n">key</span><span class="o">.</span><span class="n">store</span><span class="o">.</span><span class="n">password</span><span class="o">=</span><span class="n">android</span>
+<span class="n">key</span><span class="o">.</span><span class="n">alias</span><span class="o">.</span><span class="n">password</span><span class="o">=</span><span class="n">android</span>
+</pre></div>
+</div>
 <p>注意key.store的值必须是keystore自己的相对路径。</p>
 <p>更多细节请看Quick_Start.</p>
 <ul class="simple">
 <li>package_type(默认是debug), 决定是否在打包apk的时候用ProGuard.package_type允许的值是&#8217;debug&#8217;和&#8217;release&#8217;.默认的值是debug，指定ProGuard不运行</li>
-<li></li>
 </ul>
 <p>注意 这个参数将会被重命名来直观地反映是用来确定运行ProGuard的</p>
 <ul class="simple">
 <li>proguard_config 默认是None，  ProGurad的配置文件的相对路径。通过-include标记传递，当package_typ是release的时候。</li>
-<li>no_dx 默认是[]，通过编译的时候传递的android_library和java_library()依赖的构建目标的列表。所以不应该包含在生成的</li>
-<li>apk里的classes.dex</li>
+<li>no_dx 默认是[]，通过编译的时候传递的android_library和java_library()依赖的构建目标的列表。所以不应该包含在生成的 apk里的classes.dex</li>
 <li>deps 默认是[] 将会打包到apk文件的java代码，资源文件以及native的库。通过传递，下面的规则类型将会被打包进apk里面。</li>
-<li></li>
 </ul>
-<p>android_library()
-android_resource()
-java_library()
-java_binary()
-prebuilt_jar()
-ndk_library()
-prebuilt_native_library()</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">android_library</span><span class="p">()</span>
+<span class="n">android_resource</span><span class="p">()</span>
+<span class="n">java_library</span><span class="p">()</span>
+<span class="n">java_binary</span><span class="p">()</span>
+<span class="n">prebuilt_jar</span><span class="p">()</span>
+<span class="n">ndk_library</span><span class="p">()</span>
+<span class="n">prebuilt_native_library</span><span class="p">()</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li>visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。</li>
-<li></li>
 </ul>
-<p>例子</p>
+</div>
+<div class="section" id="id2">
+<h2>例子<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>这里有一个android_binary()的规则，包含了一个Android资源文件的依赖和一个已编译的java代码的依赖。</p>
-<dl class="docutils">
-<dt>android_resource(</dt>
-<dd>name = &#8216;res&#8217;,
-res = &#8216;res&#8217;,
-assets = &#8216;assets&#8217;,</dd>
-</dl>
-<p>)</p>
-<dl class="docutils">
-<dt>android_library(</dt>
-<dd><p class="first">name = &#8216;src&#8217;,
-srcs = glob([&#8216;src/<a href="#id2"><span class="problematic" id="id3">**</span></a>/<a href="#id4"><span class="problematic" id="id5">*</span></a>.java&#8217;]),
-deps = [</p>
-<blockquote>
-<div>&#8216;:res&#8217;,</div></blockquote>
-<p class="last">],</p>
-</dd>
-</dl>
-<p>)</p>
-<p># Building this rule will produce a file named messenger.apk.
-android_binary(</p>
-<blockquote>
-<div><p>name = &#8216;messenger&#8217;,
-manifest = &#8216;AndroidManifest.xml&#8217;,
-target = &#8216;Google Inc.:Google APIs:16&#8217;,
-keystore_properties = &#8216;keystore.properties&#8217;,
-package_type = &#8216;release&#8217;,
-proguard_config = &#8216;proguard.cfg&#8217;,
-deps = [</p>
-<blockquote>
-<div>&#8216;:res&#8217;,
-&#8216;:src&#8217;,</div></blockquote>
-<p>],</p>
-</div></blockquote>
-<p>)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">android_resource</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;res&#39;</span><span class="p">,</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="s">&#39;res&#39;</span><span class="p">,</span>
+  <span class="n">assets</span> <span class="o">=</span> <span class="s">&#39;assets&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">android_library</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;src&#39;</span><span class="p">,</span>
+  <span class="n">srcs</span> <span class="o">=</span> <span class="n">glob</span><span class="p">([</span><span class="s">&#39;src/**/*.java&#39;</span><span class="p">]),</span>
+  <span class="n">deps</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;:res&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c"># Building this rule will produce a file named messenger.apk.</span>
+<span class="n">android_binary</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;messenger&#39;</span><span class="p">,</span>
+  <span class="n">manifest</span> <span class="o">=</span> <span class="s">&#39;AndroidManifest.xml&#39;</span><span class="p">,</span>
+  <span class="n">target</span> <span class="o">=</span> <span class="s">&#39;Google Inc.:Google APIs:16&#39;</span><span class="p">,</span>
+  <span class="n">keystore_properties</span> <span class="o">=</span> <span class="s">&#39;keystore.properties&#39;</span><span class="p">,</span>
+  <span class="n">package_type</span> <span class="o">=</span> <span class="s">&#39;release&#39;</span><span class="p">,</span>
+  <span class="n">proguard_config</span> <span class="o">=</span> <span class="s">&#39;proguard.cfg&#39;</span><span class="p">,</span>
+  <span class="n">deps</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;:res&#39;</span><span class="p">,</span>
+    <span class="s">&#39;:src&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -143,6 +140,7 @@ deps = [</p>
   <ul>
 <li><a class="reference internal" href="#">android_binary()</a><ul>
 <li><a class="reference internal" href="#id1">参数</a></li>
+<li><a class="reference internal" href="#id2">例子</a></li>
 </ul>
 </li>
 </ul>

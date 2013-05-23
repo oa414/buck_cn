@@ -56,17 +56,16 @@
   <div class="section" id="java-binary">
 <h1>java_binary<a class="headerlink" href="#java-binary" title="Permalink to this headline">¶</a></h1>
 <p>一个java_binaray规则用来根据它依赖的java_library的编译的.calss和资源文件文件创建一个JAR文件</p>
-<p>参数</p>
-<p>name（必须）规则的名字，也是产生的jar文件的名字
-deps(默认是[]) 要被编译打包进jar文件的规则（通常是java_library()类型）
-main_class(默认是None)如果提供，它的值就会成为产生的JAR文件的META-INF/MANIFEST.MF的Main-Class属性。同时，当这个规则作为可执行的genrule(),main_class会indicate the class ，哪个main方法会被命令行参数调用。这将成为一个java -jar&lt;name.jar&gt; &lt;args&gt;这样的命令的组成部分</p>
-<p>mainifest_file(默认是None)如果提供，这个manifest会被生成的JAR文件用到，如果它包含了main_class，这个manifest文件会被使用，但是main_classs参数会重载manifest里的main class属性</p>
+<div class="section" id="id1">
+<h2>参数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><ul class="first">
+<li>name（必须）规则的名字，也是产生的jar文件的名字</li>
+<li>deps(默认是[]) 要被编译打包进jar文件的规则（通常是java_library()类型）</li>
+<li>main_class(默认是None)如果提供，它的值就会成为产生的JAR文件的META-INF/MANIFEST.MF的Main-Class属性。同时，当这个规则作为可执行的genrule(),main_class会indicate the class ，哪个main方法会被命令行参数调用。这将成为一个java -jar&lt;name.jar&gt; &lt;args&gt;这样的命令的组成部分</li>
+<li>mainifest_file(默认是None)如果提供，这个manifest会被生成的JAR文件用到，如果它包含了main_class，这个manifest文件会被使用，但是main_classs参数会重载manifest里的main class属性</li>
 <li>visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。</li>
 </ul>
-</li>
-</ul>
+</div>
 </div>
 
 
@@ -75,6 +74,14 @@ main_class(默认是None)如果提供，它的值就会成为产生的JAR文件�
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">java_binary</a><ul>
+<li><a class="reference internal" href="#id1">参数</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="genrule.html"
                         title="previous chapter">gen_rule</a></p>

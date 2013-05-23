@@ -56,56 +56,55 @@
   <div class="section" id="apk-genrule">
 <h1>apk_genrule<a class="headerlink" href="#apk-genrule" title="Permalink to this headline">¶</a></h1>
 <p>一个apk_genrule()规则用来预处理一个APK，从genrule分离出apk_genrule来输出APKs。所以像buck install 或者 buck uninstall 仍然能工作</p>
-<p>参数</p>
-<p>名字（要求）规则的名字
-apk（要求）输入的android_binary()规则。产APK的路径可以关联到$APK shell变量</p>
-<p>srcs(要求) 等同与genrule().
-deps(要求) 等同与genrule().
-cmd(要求) 等同与genrule().
-cout(要求) 等同与genrule().
-- visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。</p>
-<p>例子</p>
+<p>参数
+&#8212;</p>
+<ul class="simple">
+<li>名字（要求）规则的名字</li>
+<li>apk（要求）输入的android_binary()规则。产APK的路径可以关联到$APK shell变量</li>
+<li>srcs(要求) 等同与genrule().</li>
+<li>deps(要求) 等同与genrule().</li>
+<li>cmd(要求) 等同与genrule().</li>
+<li>cout(要求) 等同与genrule().</li>
+<li>visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。</li>
+</ul>
+<div class="section" id="id1">
+<h2>例子<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>这里有一个一对产生APK的apk_rule()，做了一些签名，以及zipalign(字节对齐)的工作</p>
-<p># Building this rule will produce a file named messenger.apk.
-android_binary(</p>
-<blockquote>
-<div><p>name = &#8216;messenger&#8217;,
-manifest = &#8216;AndroidManifest.xml&#8217;,
-target = &#8216;Google Inc.:Google APIs:16&#8217;,
-keystore_properties = &#8216;keystore.properties&#8217;,
-package_type = &#8216;release&#8217;,
-proguard_config = &#8216;proguard.cfg&#8217;,
-deps = [</p>
-<blockquote>
-<div>&#8216;:res&#8217;,
-&#8216;:src&#8217;,</div></blockquote>
-<p>],</p>
-</div></blockquote>
-<p>)</p>
-<dl class="docutils">
-<dt>apk_genrule(</dt>
-<dd><p class="first">name = &#8216;messenger_super_sign_unalign&#8217;,
-apk = &#8216;:messenger&#8217;,
-deps = [</p>
-<blockquote>
-<div>&#8216;//java/com/facebook/sign:super_sign&#8217;,</div></blockquote>
-<p>],
-cmd = &#8216;${//java/com/facebook/sign:super_sign} &#8211;input $APK&#8217;</p>
-<blockquote>
-<div>&#8216;&#8211;output $OUT&#8217;,</div></blockquote>
-<p class="last">out = &#8216;messenger_super_sign_unalign.apk&#8217;,</p>
-</dd>
-</dl>
-<p>)</p>
-<dl class="docutils">
-<dt>apk_genrule(</dt>
-<dd>name = &#8216;messenger_super_sign&#8217;,
-apk = &#8216;:messenger_super_sign_unalign&#8217;,
-deps = [],
-cmd = &#8216;$ANDROID_HOME/tools/zipalign -f 4 $APK $OUT&#8217;,
-out = &#8216;messenger_super_sign.apk&#8217;,</dd>
-</dl>
-<p>)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Building this rule will produce a file named messenger.apk.</span>
+<span class="n">android_binary</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;messenger&#39;</span><span class="p">,</span>
+  <span class="n">manifest</span> <span class="o">=</span> <span class="s">&#39;AndroidManifest.xml&#39;</span><span class="p">,</span>
+  <span class="n">target</span> <span class="o">=</span> <span class="s">&#39;Google Inc.:Google APIs:16&#39;</span><span class="p">,</span>
+  <span class="n">keystore_properties</span> <span class="o">=</span> <span class="s">&#39;keystore.properties&#39;</span><span class="p">,</span>
+  <span class="n">package_type</span> <span class="o">=</span> <span class="s">&#39;release&#39;</span><span class="p">,</span>
+  <span class="n">proguard_config</span> <span class="o">=</span> <span class="s">&#39;proguard.cfg&#39;</span><span class="p">,</span>
+  <span class="n">deps</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;:res&#39;</span><span class="p">,</span>
+    <span class="s">&#39;:src&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">apk_genrule</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;messenger_super_sign_unalign&#39;</span><span class="p">,</span>
+  <span class="n">apk</span> <span class="o">=</span> <span class="s">&#39;:messenger&#39;</span><span class="p">,</span>
+  <span class="n">deps</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;//java/com/facebook/sign:super_sign&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+  <span class="n">cmd</span> <span class="o">=</span> <span class="s">&#39;${//java/com/facebook/sign:super_sign} --input $APK&#39;</span>
+      <span class="s">&#39;--output $OUT&#39;</span><span class="p">,</span>
+  <span class="n">out</span> <span class="o">=</span> <span class="s">&#39;messenger_super_sign_unalign.apk&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">apk_genrule</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;messenger_super_sign&#39;</span><span class="p">,</span>
+  <span class="n">apk</span> <span class="o">=</span> <span class="s">&#39;:messenger_super_sign_unalign&#39;</span><span class="p">,</span>
+  <span class="n">deps</span> <span class="o">=</span> <span class="p">[],</span>
+  <span class="n">cmd</span> <span class="o">=</span> <span class="s">&#39;$ANDROID_HOME/tools/zipalign -f 4 $APK $OUT&#39;</span><span class="p">,</span>
+  <span class="n">out</span> <span class="o">=</span> <span class="s">&#39;messenger_super_sign.apk&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -114,6 +113,14 @@ out = &#8216;messenger_super_sign.apk&#8217;,</dd>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">apk_genrule</a><ul>
+<li><a class="reference internal" href="#id1">例子</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="android_resource.html"
                         title="previous chapter">android_resource</a></p>

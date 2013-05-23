@@ -59,32 +59,28 @@
 <div class="section" id="id1">
 <h2>参数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li></li>
+<li>name （必须） 规则的名字</li>
+<li>native_libs (默认是None) 包含native 库的目录路径。这个目录对于不同的</li>
+<li>CPU架构有不同的字母里，比如armeabi和armeabi-v7a</li>
+<li>visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。</li>
 </ul>
-<p>name （必须） 规则的名字
-- native_libs (默认是None) 包含native 库的目录路径。这个目录对于不同的
-- CPU架构有不同的字母里，比如armeabi和armeabi-v7a
-- - visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。</p>
 <p>例子</p>
 <p>&#8212;
 大多数时间，一个prebuilt_native_library相对于使用它的android_library是私有的</p>
-<dl class="docutils">
-<dt>prebuilt_native_library(</dt>
-<dd>name = &#8216;native_libs&#8217;,
-native_libs = &#8216;libs&#8217;,</dd>
-</dl>
-<p>)</p>
-<dl class="docutils">
-<dt>android_library(</dt>
-<dd><p class="first">name = &#8216;my_lib&#8217;,
-srcs = glob([&#8216;<a href="#id2"><span class="problematic" id="id3">*</span></a>.java&#8217;]),
-deps = [</p>
-<blockquote>
-<div>&#8216;:native_libs&#8217;,</div></blockquote>
-<p class="last">],</p>
-</dd>
-</dl>
-<p>)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">prebuilt_native_library</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;native_libs&#39;</span><span class="p">,</span>
+  <span class="n">native_libs</span> <span class="o">=</span> <span class="s">&#39;libs&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">android_library</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;my_lib&#39;</span><span class="p">,</span>
+  <span class="n">srcs</span> <span class="o">=</span> <span class="n">glob</span><span class="p">([</span><span class="s">&#39;*.java&#39;</span><span class="p">]),</span>
+  <span class="n">deps</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;:native_libs&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 

@@ -57,7 +57,8 @@
 <h1>android_resource<a class="headerlink" href="#android-resource" title="Permalink to this headline">¶</a></h1>
 <p>一个android_resource()规则用来打包Android资源文件（传统的是在res和assets目录下）</p>
 <p>android_resource()输出是一个通过aa[t &#8211; output-text-symbols 生成的R.txt文件。</p>
-<p>参数</p>
+<div class="section" id="id1">
+<h2>参数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>name (必要)规则的名字</li>
 <li>res(默认是[]) Android 资源文件的目录</li>
@@ -66,16 +67,19 @@
 <p>java包
 - assets(默认是[]) 包含Android assets的目录
 - deps (默认是[]) 另外的android_resource规则用来通过运行aapt是用-S参数包含
-- - visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。</p>
-<p>例子</p>
+- visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。</p>
+</div>
+<div class="section" id="id2">
+<h2>例子<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>大多数情况下，一个android_resource规则只定义了name, res和package。约定简单的规则一般都叫&#8217;res&#8217;</p>
-<dl class="docutils">
-<dt>android_resource(</dt>
-<dd>name = &#8216;res&#8217;,
-res = &#8216;res&#8217;,
-package = &#8216;com.example&#8217;,</dd>
-</dl>
-<p>)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">android_resource</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;res&#39;</span><span class="p">,</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="s">&#39;res&#39;</span><span class="p">,</span>
+  <span class="n">package</span> <span class="o">=</span> <span class="s">&#39;com.example&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -84,6 +88,15 @@ package = &#8216;com.example&#8217;,</dd>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">android_resource</a><ul>
+<li><a class="reference internal" href="#id1">参数</a></li>
+<li><a class="reference internal" href="#id2">例子</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="android_library.html"
                         title="previous chapter">android_library</a></p>

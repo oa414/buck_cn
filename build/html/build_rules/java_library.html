@@ -56,80 +56,70 @@
   <div class="section" id="java-library">
 <h1>java_library<a class="headerlink" href="#java-library" title="Permalink to this headline">¶</a></h1>
 <p>一个java_library()规则用来定义一系列的可以编译到一起的java文件，java_library规则的主要输出是一个包含所有编译的类文件和资源文件的JAR包</p>
-<p>参数</p>
-<p>name (必要)规则的名字
-srcs(默认是[])这个规则编译的java文件集合</p>
-<p>resource 默认是[] 包含在已编译的.class文件里的静态文件。这些文件可以用Class.getResource进行装载</p>
+<div class="section" id="id1">
+<h2>参数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>name (必要)规则的名字</li>
+<li>srcs(默认是[])这个规则编译的java文件集合</li>
+<li>resource 默认是[] 包含在已编译的.class文件里的静态文件。这些文件可以用Class.getResource进行装载</li>
+</ul>
 <p>注意 buck用buckconfig.html里的src_roots来帮助确定哪里的resource应该被放置到生成的jar文件里面</p>
 <ul class="simple">
 <li>deps( 默认是[])规则。（通常是另外一个java_library）用来生成编译这个java_library需要的classpath</li>
 <li>source(默认是&#8216;6&#8217;) 编译用的Java语言版本。对于javac的 source 参数</li>
 <li>target (默认是&#8216;6&#8217;) 默认编译的字节码版本。对应javac的 - target参数</li>
 <li>export_deps(默认是False)Whether or not depending on this rule should also transitively pull in all of its dependencies.</li>
-<li><ul class="first">
-<li><ul class="first">
 <li>visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。</li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 <p>例子
 &#8212;</p>
-<p># A rule that compiles a single .java file.
-java_library(</p>
-<blockquote>
-<div><p>name = &#8216;JsonUtil&#8217;,
-srcs = [&#8216;JsonUtil.java&#8217;],
-deps = [</p>
-<blockquote>
-<div>&#8216;//third_party/guava:guava&#8217;,
-&#8216;//third_party/jackson:jackson&#8217;,</div></blockquote>
-<p>],</p>
-</div></blockquote>
-<p>)</p>
-<p># A rule that compiles all of the .java files under the directory in
-# which the rule is defined using glob(). It also excludes an
-# individual file that may has additional dependencies, so it is
-# compiled by a separate rule.
-java_library(</p>
-<blockquote>
-<div><p>name = &#8216;messenger&#8217;,
-srcs = glob([&#8216;<a href="#id1"><span class="problematic" id="id2">**</span></a>/<a href="#id3"><span class="problematic" id="id4">*</span></a>.java&#8217;], excludes = [&#8216;MessengerModule.java&#8217;]),
-deps = [</p>
-<blockquote>
-<div>&#8216;//src/com/facebook/base:base&#8217;,
-&#8216;//third_party/guava:guava&#8217;,</div></blockquote>
-<p>],</p>
-</div></blockquote>
-<p>)</p>
-<dl class="docutils">
-<dt>java_library(</dt>
-<dd><p class="first">name = &#8216;MessengerModule&#8217;,
-srcs = [&#8216;MessengerModule.java&#8217;],
-deps = [</p>
-<blockquote>
-<div>&#8216;//src/com/facebook/base:base&#8217;,
-&#8216;//src/com/google/inject:inject&#8217;,
-&#8216;//third_party/guava:guava&#8217;,
-&#8216;//third_party/jsr-330:jsr-330&#8217;,</div></blockquote>
-<p class="last">],</p>
-</dd>
-</dl>
-<p>)</p>
-<p># A rule that builds a library with both relative and
-# fully-qualified deps.
-java_library(</p>
-<blockquote>
-<div><p>name = &#8216;testutil&#8217;,
-srcs = glob([&#8216;tests/<strong>/*.java&#8217;], excludes = &#8216;tests/</strong>/<a href="#id5"><span class="problematic" id="id6">*</span></a>Test.java&#8217;),
-deps = [</p>
-<blockquote>
-<div>&#8216;:lib-fb4a&#8217;,
-&#8216;//java/com/facebook/base:base&#8217;,</div></blockquote>
-<p>],</p>
-</div></blockquote>
-<p>)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># A rule that compiles a single .java file.</span>
+<span class="n">java_library</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;JsonUtil&#39;</span><span class="p">,</span>
+  <span class="n">srcs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;JsonUtil.java&#39;</span><span class="p">],</span>
+  <span class="n">deps</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;//third_party/guava:guava&#39;</span><span class="p">,</span>
+    <span class="s">&#39;//third_party/jackson:jackson&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c"># A rule that compiles all of the .java files under the directory in</span>
+<span class="c"># which the rule is defined using glob(). It also excludes an</span>
+<span class="c"># individual file that may has additional dependencies, so it is</span>
+<span class="c"># compiled by a separate rule.</span>
+<span class="n">java_library</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;messenger&#39;</span><span class="p">,</span>
+  <span class="n">srcs</span> <span class="o">=</span> <span class="n">glob</span><span class="p">([</span><span class="s">&#39;**/*.java&#39;</span><span class="p">],</span> <span class="n">excludes</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;MessengerModule.java&#39;</span><span class="p">]),</span>
+  <span class="n">deps</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;//src/com/facebook/base:base&#39;</span><span class="p">,</span>
+    <span class="s">&#39;//third_party/guava:guava&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">java_library</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;MessengerModule&#39;</span><span class="p">,</span>
+  <span class="n">srcs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;MessengerModule.java&#39;</span><span class="p">],</span>
+  <span class="n">deps</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;//src/com/facebook/base:base&#39;</span><span class="p">,</span>
+    <span class="s">&#39;//src/com/google/inject:inject&#39;</span><span class="p">,</span>
+    <span class="s">&#39;//third_party/guava:guava&#39;</span><span class="p">,</span>
+    <span class="s">&#39;//third_party/jsr-330:jsr-330&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c"># A rule that builds a library with both relative and</span>
+<span class="c"># fully-qualified deps.</span>
+<span class="n">java_library</span><span class="p">(</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;testutil&#39;</span><span class="p">,</span>
+  <span class="n">srcs</span> <span class="o">=</span> <span class="n">glob</span><span class="p">([</span><span class="s">&#39;tests/**/*.java&#39;</span><span class="p">],</span> <span class="n">excludes</span> <span class="o">=</span> <span class="s">&#39;tests/**/*Test.java&#39;</span><span class="p">),</span>
+  <span class="n">deps</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;:lib-fb4a&#39;</span><span class="p">,</span>
+    <span class="s">&#39;//java/com/facebook/base:base&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -138,6 +128,14 @@ deps = [</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">java_library</a><ul>
+<li><a class="reference internal" href="#id1">参数</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="java_binary.html"
                         title="previous chapter">java_binary</a></p>
