@@ -1,0 +1,166 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>apk_genrule &mdash; Buck Document Chinese Translation 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Buck Document Chinese Translation 0.0.1 documentation" href="../index.html" />
+    <link rel="up" title="构建规则" href="index.html" />
+    <link rel="next" title="gen_aidl" href="gen_aidl.html" />
+    <link rel="prev" title="android_resource" href="android_resource.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="gen_aidl.html" title="gen_aidl"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="android_resource.html" title="android_resource"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">构建规则</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="apk-genrule">
+<h1>apk_genrule<a class="headerlink" href="#apk-genrule" title="Permalink to this headline">¶</a></h1>
+<p>一个apk_genrule()规则用来预处理一个APK，从genrule分离出apk_genrule来输出APKs。所以像buck install 或者 buck uninstall 仍然能工作</p>
+<p>参数</p>
+<p>名字（要求）规则的名字
+apk（要求）输入的android_binary()规则。产APK的路径可以关联到$APK shell变量</p>
+<p>srcs(要求) 等同与genrule().
+deps(要求) 等同与genrule().
+cmd(要求) 等同与genrule().
+cout(要求) 等同与genrule().
+- visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。</p>
+<p>例子</p>
+<p>这里有一个一对产生APK的apk_rule()，做了一些签名，以及zipalign(字节对齐)的工作</p>
+<p># Building this rule will produce a file named messenger.apk.
+android_binary(</p>
+<blockquote>
+<div><p>name = &#8216;messenger&#8217;,
+manifest = &#8216;AndroidManifest.xml&#8217;,
+target = &#8216;Google Inc.:Google APIs:16&#8217;,
+keystore_properties = &#8216;keystore.properties&#8217;,
+package_type = &#8216;release&#8217;,
+proguard_config = &#8216;proguard.cfg&#8217;,
+deps = [</p>
+<blockquote>
+<div>&#8216;:res&#8217;,
+&#8216;:src&#8217;,</div></blockquote>
+<p>],</p>
+</div></blockquote>
+<p>)</p>
+<dl class="docutils">
+<dt>apk_genrule(</dt>
+<dd><p class="first">name = &#8216;messenger_super_sign_unalign&#8217;,
+apk = &#8216;:messenger&#8217;,
+deps = [</p>
+<blockquote>
+<div>&#8216;//java/com/facebook/sign:super_sign&#8217;,</div></blockquote>
+<p>],
+cmd = &#8216;${//java/com/facebook/sign:super_sign} &#8211;input $APK&#8217;</p>
+<blockquote>
+<div>&#8216;&#8211;output $OUT&#8217;,</div></blockquote>
+<p class="last">out = &#8216;messenger_super_sign_unalign.apk&#8217;,</p>
+</dd>
+</dl>
+<p>)</p>
+<dl class="docutils">
+<dt>apk_genrule(</dt>
+<dd>name = &#8216;messenger_super_sign&#8217;,
+apk = &#8216;:messenger_super_sign_unalign&#8217;,
+deps = [],
+cmd = &#8216;$ANDROID_HOME/tools/zipalign -f 4 $APK $OUT&#8217;,
+out = &#8216;messenger_super_sign.apk&#8217;,</dd>
+</dl>
+<p>)</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="android_resource.html"
+                        title="previous chapter">android_resource</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="gen_aidl.html"
+                        title="next chapter">gen_aidl</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/build_rules/apk_genrule.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="gen_aidl.html" title="gen_aidl"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="android_resource.html" title="android_resource"
+             >previous</a> |</li>
+        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >构建规则</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Lin Xiangyu.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

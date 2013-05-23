@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Buck Document Chinese Translation 0.0.1 documentation" href="#" />
-    <link rel="next" title="Buck: 一个Android构建工具" href="overview.html" /> 
+    <link rel="next" title="快速入门" href="get_start/index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,7 +36,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="overview.html" title="Buck: 一个Android构建工具"
+          <a href="get_start/index.html" title="快速入门"
              accesskey="N">next</a> |</li>
         <li><a href="#">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li> 
       </ul>
@@ -53,29 +53,56 @@
 <p>译文源文件: <a class="reference external" href="https://github.com/oa414/buck_cn">https://github.com/oa414/buck_cn</a></p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Buck: 一个Android构建工具</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#id1">特性</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#buck">Buck是如何运行的</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#id2">Buck适合我么</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_start/index.html">快速入门</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="get_start/overview.html">Buck: 一个Android构建工具</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_start/install.html">下载和安装Buck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_start/quick_start.html">快速入门</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="quick_start.html">快速入门</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quick_start.html#buck">安装Buck</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quick_start.html#java">编译Java</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quick_start.html#id2">包资源</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quick_start.html#id3">构建一个密钥</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quick_start.html#apk">构建一个APK</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quick_start.html#id4">创建别名</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quick_start.html#intellij">创建一个Intellij项目</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">下载和安装Buck</a></li>
 <li class="toctree-l1"><a class="reference internal" href="concepts/index.html">观念</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="concepts/build_rule.html">构建规则</a></li>
 <li class="toctree-l2"><a class="reference internal" href="concepts/build_target.html">构建目标</a></li>
 <li class="toctree-l2"><a class="reference internal" href="concepts/build_file.html">buck文件</a></li>
 <li class="toctree-l2"><a class="reference internal" href="concepts/buckversion.html">buck版本</a></li>
 <li class="toctree-l2"><a class="reference internal" href="concepts/nobuckcheck.html">.nobuckcheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts/buckconfig.html">buckconfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts/buckconfig.html#id1">buckconfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts/build_target_pattern.html">构建目标模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts/visibility.html">可见性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts/troubleshooting.html">解决问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts/FAQ.html">FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="build_rules/index.html">构建规则</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="build_rules/android_binary.html">android_binary()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_rules/android_library.html">android_library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_rules/android_resource.html">android_resource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_rules/apk_genrule.html">apk_genrule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_rules/gen_aidl.html">gen_aidl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_rules/genrule.html">gen_rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_rules/java_binary.html">java_binary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_rules/java_library.html">java_library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_rules/java_test.html">java_test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_rules/ndk_library.html">ndk_library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_rules/prebuilt_jar.html">prebuilt_jar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_rules/prebuilt_native_library.html">prebuilt_native_library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_rules/project_config.html">project_config</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions/index.html">函数</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions/genfile.html">genfile()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions/glob.html">glob()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions/include_defs.html">include_defs()</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="commands/index.html">命令</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commands/audit.html">buck audit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/build.html">buck build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/clean.html">buck clean</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/install.html">buck install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/project.html">buck project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/targets.html">buck target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands/test.html">build test</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="extending/index.html">扩展</a><ul>
@@ -84,6 +111,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing/index.html">贡献</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing/workflow.html">工作方式</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing/codestyle.html">编码规范</a></li>
 </ul>
 </li>
@@ -114,8 +142,8 @@
 </ul>
 
   <h4>Next topic</h4>
-  <p class="topless"><a href="overview.html"
-                        title="next chapter">Buck: 一个Android构建工具</a></p>
+  <p class="topless"><a href="get_start/index.html"
+                        title="next chapter">快速入门</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/index.txt"
@@ -145,7 +173,7 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="overview.html" title="Buck: 一个Android构建工具"
+          <a href="get_start/index.html" title="快速入门"
              >next</a> |</li>
         <li><a href="#">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li> 
       </ul>

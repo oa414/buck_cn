@@ -1,0 +1,162 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>解决问题 &mdash; Buck Document Chinese Translation 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Buck Document Chinese Translation 0.0.1 documentation" href="../index.html" />
+    <link rel="up" title="观念" href="index.html" />
+    <link rel="next" title="FAQ" href="FAQ.html" />
+    <link rel="prev" title="可见性" href="visibility.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="FAQ.html" title="FAQ"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="visibility.html" title="可见性"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">观念</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="id1">
+<h1>解决问题<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>如果Buck停止工作，你可以试试以下方法</p>
+<div class="section" id="oracle-jdk">
+<h2>确保你使用的是Oracle JDK<a class="headerlink" href="#oracle-jdk" title="Permalink to this headline">¶</a></h2>
+<p>Buck只用Oracle JDK测试过，如果你用OpenJDK，不能保证能正常工作</p>
+</div>
+<div class="section" id="buck">
+<h2>重新构建Buck<a class="headerlink" href="#buck" title="Permalink to this headline">¶</a></h2>
+<p>在Buck短暂的历史上，自动升级的逻辑导致过一些Bug。如果你认为问题是因为Buck自动升级导致的，你最好自己手动构建一下Buck。</p>
+<div class="highlight-python"><pre>cd &lt;directory-where-you-checked-out-Buck&gt;
+git checkout master
+git pull --rebase
+ant clean jar</pre>
+</div>
+</div>
+<div class="section" id="buck-clean">
+<h2>运行Buck clean<a class="headerlink" href="#buck-clean" title="Permalink to this headline">¶</a></h2>
+<p>理想情况下，这个方案是从来不会用的。因为Buck如果正常工作的话，它会知道那些文件是修改过，那些需要重新构建。</p>
+<p>即便如此，Buck是不完美的，所以你会发现一些缺陷的地方。在这种情况下，用buck clean来试试？</p>
+</div>
+<div class="section" id="nobuckcheck">
+<h2>确保你没有一个.nobuckcheck 文件<a class="headerlink" href="#nobuckcheck" title="Permalink to this headline">¶</a></h2>
+<p>如果你曾经在Buck项目上工作，你会建立一个.nobuckcheck文件来禁止Buck自动升级的特性。当你完成修改的时候，你应该删除.nobuckcheck文件来让Buck自动升级。</p>
+<p>如果你忘了做这个，如果有些人需要用更新的Buck来完成你的项目，而且你本地的buck版本又是过时了的，那就定期运行git pull &#8211;rebase来手动检出Buck的最新版本。</p>
+</div>
+<div class="section" id="id2">
+<h2>删除你项目里面的所有生成的文件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Buck所有产生的文件都会写入到buck-out目录，可以让buck clean简单的实现。然而，你可能会用其他工具（比如IDE）来在目录树下产生输出文件，这些文件可能无意的被glob()规则包含，从而影响Buck。</p>
+<p>比如，如果你用Git，你运行</p>
+<div class="highlight-python"><pre>git clean -xfdn</pre>
+</div>
+<p>来列出你目录下没有被包含到版本控制系统里面的文件，-n表示仅仅运行，让Git不要删除那些文件。如果你希望Git删除掉没有包含金版本控制系统里面的文件，那么用-e选项：</p>
+<div class="highlight-python"><pre>git clean -xfd -e local.properties</pre>
+</div>
+<p>注意-e可以被多次定义。Note that -e can be specified multiple times.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">解决问题</a><ul>
+<li><a class="reference internal" href="#oracle-jdk">确保你使用的是Oracle JDK</a></li>
+<li><a class="reference internal" href="#buck">重新构建Buck</a></li>
+<li><a class="reference internal" href="#buck-clean">运行Buck clean</a></li>
+<li><a class="reference internal" href="#nobuckcheck">确保你没有一个.nobuckcheck 文件</a></li>
+<li><a class="reference internal" href="#id2">删除你项目里面的所有生成的文件</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="visibility.html"
+                        title="previous chapter">可见性</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="FAQ.html"
+                        title="next chapter">FAQ</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/concepts/troubleshooting.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="FAQ.html" title="FAQ"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="visibility.html" title="可见性"
+             >previous</a> |</li>
+        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >观念</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Lin Xiangyu.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

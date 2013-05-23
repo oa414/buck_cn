@@ -1,0 +1,135 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FAQ &mdash; Buck Document Chinese Translation 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Buck Document Chinese Translation 0.0.1 documentation" href="../index.html" />
+    <link rel="up" title="观念" href="index.html" />
+    <link rel="next" title="构建规则" href="../build_rules/index.html" />
+    <link rel="prev" title="解决问题" href="troubleshooting.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../build_rules/index.html" title="构建规则"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="troubleshooting.html" title="解决问题"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">观念</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="faq">
+<h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h1>
+<p>Q: 为什么Buck不支持Windows。</p>
+<p>A: 要让Buck支持Windows，有很多工作还要做：</p>
+<ul class="simple">
+<li>Buck在很多地方用了软链接，我们需要在很多地方替换成Windows下等价的东西</li>
+<li>Buck硬编码了OS X/Linux的文件和路径分隔符，这或许是一个不好的软件设计，但是可以让代码在很多情况更具可读性，尤其是单元测试的时候</li>
+<li>要增加很多文档维护的工作。比如说，一些OS X/Linux的小技巧，比如</li>
+</ul>
+<div class="highlight-python"><pre>buck targets --type java_test | xargs buck test</pre>
+</div>
+<p>在Windows下不能工作，所以必须要有单独的文档</p>
+<ul class="simple">
+<li>./bin/buck是Bash写的，为了支持Windows必须有相应的Windows批处理脚步，同时保持两个脚本的工作很烦。当然，我们可以用跨平台的预言，比如Ruby，但是要用户安装额外的工具。</li>
+<li>要增加测试的地方。</li>
+</ul>
+<p>虽然有那么多额外的活，我们还是希望未来能支持Windows。</p>
+<p>Q：为么么Buck用Ant构建而不是Buck？</p>
+<p>A: 自举的系统将会更难维护和调试。</p>
+<p>如果Buck用Buck自己构建，每当Buck的源代码提交的时候，应当包括一个Buck的二进制执行文件。这件事很容易被忘掉，所以很难用正确的二进制文件来验证。用Ant编译Buck可以确保我们用源码构建，可以更容易验证。</p>
+<p>另外，因为Ant比Buck成熟，所以它支持许多我们还没有在Buck里面实现的特性，比如生成Javadoc，用PMD进行静态分析，Python单元测试等。</p>
+<p>即使如此，Buck也可以用自己来构建。当你用Ant构建Buck之后，可以运行./bin/buck build buck来重新构建Buck。</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="troubleshooting.html"
+                        title="previous chapter">解决问题</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../build_rules/index.html"
+                        title="next chapter">构建规则</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/concepts/FAQ.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../build_rules/index.html" title="构建规则"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="troubleshooting.html" title="解决问题"
+             >previous</a> |</li>
+        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >观念</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Lin Xiangyu.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

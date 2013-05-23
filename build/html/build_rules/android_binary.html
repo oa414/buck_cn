@@ -1,0 +1,199 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>android_binary() &mdash; Buck Document Chinese Translation 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Buck Document Chinese Translation 0.0.1 documentation" href="../index.html" />
+    <link rel="up" title="构建规则" href="index.html" />
+    <link rel="next" title="android_library" href="android_library.html" />
+    <link rel="prev" title="构建规则" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="android_library.html" title="android_library"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="构建规则"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">构建规则</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="android-binary">
+<h1>android_binary()<a class="headerlink" href="#android-binary" title="Permalink to this headline">¶</a></h1>
+<p>An android_binary() rule is used to generate an Android APK.</p>
+<p>一个android_binary()规则用来生成一个Android APK.</p>
+<div class="section" id="id1">
+<h2>参数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>name（必须）规则的名字，也是这个规则产生的apk的名字。</li>
+<li>manifest(必须) Andorid manifest的相对路径，通常情况下会和android_binary()在同一个目录，在这种情况下可以简单写成‘AndroidManifest.xml’</li>
+<li>target(必须)构建APK的目标Android版本。在传统Android 项目中，通常在project.properties文件定义，通常是类似Google Inc.:Google APIs:16</li>
+<li>keystore_properties(必须) 定义keystore属性的.properties文件的相对路径。</li>
+</ul>
+<p>key.store=debug.keystore
+key.alias=my_alias
+key.store.password=android
+key.alias.password=android</p>
+<p>注意key.store的值必须是keystore自己的相对路径。</p>
+<p>更多细节请看Quick_Start.</p>
+<ul class="simple">
+<li>package_type(默认是debug), 决定是否在打包apk的时候用ProGuard.package_type允许的值是&#8217;debug&#8217;和&#8217;release&#8217;.默认的值是debug，指定ProGuard不运行</li>
+<li></li>
+</ul>
+<p>注意 这个参数将会被重命名来直观地反映是用来确定运行ProGuard的</p>
+<ul class="simple">
+<li>proguard_config 默认是None，  ProGurad的配置文件的相对路径。通过-include标记传递，当package_typ是release的时候。</li>
+<li>no_dx 默认是[]，通过编译的时候传递的android_library和java_library()依赖的构建目标的列表。所以不应该包含在生成的</li>
+<li>apk里的classes.dex</li>
+<li>deps 默认是[] 将会打包到apk文件的java代码，资源文件以及native的库。通过传递，下面的规则类型将会被打包进apk里面。</li>
+<li></li>
+</ul>
+<p>android_library()
+android_resource()
+java_library()
+java_binary()
+prebuilt_jar()
+ndk_library()
+prebuilt_native_library()</p>
+<ul class="simple">
+<li>visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。</li>
+<li></li>
+</ul>
+<p>例子</p>
+<p>这里有一个android_binary()的规则，包含了一个Android资源文件的依赖和一个已编译的java代码的依赖。</p>
+<dl class="docutils">
+<dt>android_resource(</dt>
+<dd>name = &#8216;res&#8217;,
+res = &#8216;res&#8217;,
+assets = &#8216;assets&#8217;,</dd>
+</dl>
+<p>)</p>
+<dl class="docutils">
+<dt>android_library(</dt>
+<dd><p class="first">name = &#8216;src&#8217;,
+srcs = glob([&#8216;src/<a href="#id2"><span class="problematic" id="id3">**</span></a>/<a href="#id4"><span class="problematic" id="id5">*</span></a>.java&#8217;]),
+deps = [</p>
+<blockquote>
+<div>&#8216;:res&#8217;,</div></blockquote>
+<p class="last">],</p>
+</dd>
+</dl>
+<p>)</p>
+<p># Building this rule will produce a file named messenger.apk.
+android_binary(</p>
+<blockquote>
+<div><p>name = &#8216;messenger&#8217;,
+manifest = &#8216;AndroidManifest.xml&#8217;,
+target = &#8216;Google Inc.:Google APIs:16&#8217;,
+keystore_properties = &#8216;keystore.properties&#8217;,
+package_type = &#8216;release&#8217;,
+proguard_config = &#8216;proguard.cfg&#8217;,
+deps = [</p>
+<blockquote>
+<div>&#8216;:res&#8217;,
+&#8216;:src&#8217;,</div></blockquote>
+<p>],</p>
+</div></blockquote>
+<p>)</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">android_binary()</a><ul>
+<li><a class="reference internal" href="#id1">参数</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">构建规则</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="android_library.html"
+                        title="next chapter">android_library</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/build_rules/android_binary.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="android_library.html" title="android_library"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="构建规则"
+             >previous</a> |</li>
+        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >构建规则</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Lin Xiangyu.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>java_test &mdash; Buck Document Chinese Translation 0.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Buck Document Chinese Translation 0.0.1 documentation" href="../index.html" />
+    <link rel="up" title="构建规则" href="index.html" />
+    <link rel="next" title="ndk_library" href="ndk_library.html" />
+    <link rel="prev" title="java_library" href="java_library.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ndk_library.html" title="ndk_library"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="java_library.html" title="java_library"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">构建规则</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="java-test">
+<h1>java_test<a class="headerlink" href="#java-test" title="Permalink to this headline">¶</a></h1>
+<p>一个java_test()规则用来定义一系列的用JUnit运行的java测试文件</p>
+<p>参数</p>
+<p>name （必须） 规则的名字
+srcs(默认是[]) 像java_library(),srcs定义的所有的.java文件在这个规则构建的时候会被编译。此外，所有的用这个规则构建的corresponding .class文件会被传递到Junit运行测试。没有&#64;Test注解的.class文件会被认为是失败的测试，所以请确保仅仅是测试用的类在srcs里面。通常是这样定义srcs的：glob([&#8216;<a href="#id1"><span class="problematic" id="id2">**</span></a>/<a href="#id3"><span class="problematic" id="id4">*</span></a>Test.java&#8217;]).
+resource (默认是[]) 和java_libary()相同
+labels(默认是[])一系列这些测试的标签。这些标签是arbitraty text strings，对与buck没有什么意义。但是它们可以，当你运行一个test的时候，一个标签可以定义一个执行buck test的时候的过滤器或者包含的java_test()</p>
+<ul class="simple">
+<li>source_under_test(默认是[]) java_test()如果buck测试的java_library()规则。必须是deps参数的子集。这个规则的source_under_test的.class文件会被instumented</li>
+</ul>
+<blockquote>
+<div><p>by the code coverage tool, EMMA. 如果buck test是用&#8211;code-coverage选项执行的话</p>
+<ul class="simple">
+<li><ul class="first">
+<li>visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="java_library.html"
+                        title="previous chapter">java_library</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ndk_library.html"
+                        title="next chapter">ndk_library</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/build_rules/java_test.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ndk_library.html" title="ndk_library"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="java_library.html" title="java_library"
+             >previous</a> |</li>
+        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >构建规则</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Lin Xiangyu.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
