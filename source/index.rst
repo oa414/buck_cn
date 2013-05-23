@@ -18,12 +18,14 @@ http://facebook.github.io/buck/ 的翻译。
 .. toctree::
    :maxdepth: 2
 
-   overview
-   quick_start
-   install
+   get_start/index
    concepts/index
+   build_rules/index
+   functions/index
+   commands/index
    extending/index
    contributing/index
+
 
 
 

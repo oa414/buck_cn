@@ -1,3 +1,5 @@
+prebuilt_jar
+=============
 一个prebuilt_jar()规则用来定义一个我们仓库种作为预编译的二进制文件的jar包，而不是用Buck构建的代码。通常情况下，这个规则用来指向一个第三方的jar文件（比如junit.jar）并且用作java_library()规则的依赖
 
 参数

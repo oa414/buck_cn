@@ -1,3 +1,6 @@
+buck target
+===========
+
 列出当前项目下可用的buck target
 
 下面的命令会打印所有build targetsd(按字母序)到标准输出

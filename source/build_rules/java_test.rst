@@ -1,3 +1,5 @@
+java_test
+============
 一个java_test()规则用来定义一系列的用JUnit运行的java测试文件
 
 参数

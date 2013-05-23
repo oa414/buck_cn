@@ -1,3 +1,5 @@
+buck install
+============
 构建android_binary 目标产生的apk文件
 
 取得一个android_library 目标，构建，然后用adb install -r <path_to_the_APK>安装

@@ -1,3 +1,5 @@
+gen_aidl
+=============
 一个gen_aidl文件用来从.aidl文件生产.java文件。它不久之后就会被废弃，其功能会被android_libray吸收。
 
 参数

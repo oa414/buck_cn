@@ -1,3 +1,5 @@
+android_library
+==================
 android_library目标用来定义一系列的java文件。android_library规则的输出目标是一个包含了以及编译的class文件和资源文件的jar包
 
 参数

@@ -1,3 +1,5 @@
+ndk_library
+=============
 一个ndk_library用来定义一系列C/C++文件，一个Android.mk和一个Application.mk文件用来为NDK里的ndk-build工具产生一个或更多的共享对象
 
 参数

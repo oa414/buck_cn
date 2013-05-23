@@ -1,3 +1,5 @@
+java_binary
+============
 一个java_binaray规则用来根据它依赖的java_library的编译的.calss和资源文件文件创建一个JAR文件
 
 参数

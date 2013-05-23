@@ -1,3 +1,5 @@
+工作方式
+
 在 Downloading and Installing Buck里介绍的，你可以在github检出buck后用ant构建buck。如果你改变了Buck的源文件，你可以用ant complie来重新构建。如果你觉得Buck状态有问题，你可以用ant clean && ant 来清楚构建
 
 实际上，没有一个特别快的开发周期。不过我们发现用Eclipese开发会很快，Buck包含了Eclipese的.classpath和.project文件，所以buck可以被Eclipese以一个java项目倒入。这个项目已经被配置为当你保存你代码的时候，Eclipese自动重写buck期望的.class文件（加入你开启了Eclipese的自动构建功能）

@@ -11,6 +11,10 @@
    	build_file
    	buckversion
    	nobuckcheck
+   	buckconfig
+   	build_target_pattern
+   	visibility
+   	troubleshooting
+   	FAQ
+   	
 
-
-   	buckconfig（未完成）

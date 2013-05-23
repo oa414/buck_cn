@@ -1,3 +1,5 @@
+apk_genrule
+===============
 一个apk_genrule()规则用来预处理一个APK，从genrule分离出apk_genrule来输出APKs。所以像buck install 或者 buck uninstall 仍然能工作
 
 参数

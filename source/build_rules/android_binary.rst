@@ -1,3 +1,5 @@
+android_binary() 
+=====================
 An android_binary() rule is used to generate an Android APK.
 
 一个android_binary()规则用来生成一个Android APK.

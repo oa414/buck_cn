@@ -1,3 +1,5 @@
+buck project
+===============
 产生IDE使用的配置文件
 
 现在，只支持Intellij

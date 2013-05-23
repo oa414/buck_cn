@@ -1,3 +1,5 @@
+java_library
+=============
 一个java_library()规则用来定义一系列的可以编译到一起的java文件，java_library规则的主要输出是一个包含所有编译的类文件和资源文件的JAR包
 
 参数
@@ -10,8 +12,8 @@ resource 默认是[] 包含在已编译的.class文件里的静态文件。这�
 注意 buck用buckconfig.html里的src_roots来帮助确定哪里的resource应该被放置到生成的jar文件里面
 
 - deps( 默认是[])规则。（通常是另外一个java_library）用来生成编译这个java_library需要的classpath
-- source(默认是'6') 编译用的Java语言版本。Corresponds to source argument for javac.
-- target (默认是'6') 默认编译的字节码版本。Corresponds to the -target argument for javac.
+- source(默认是'6') 编译用的Java语言版本。对于javac的 source 参数
+- target (默认是'6') 默认编译的字节码版本。对应javac的 - target参数
 - export_deps(默认是False)Whether or not depending on this rule should also transitively pull in all of its dependencies.
 - - - visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。
 

@@ -1,3 +1,6 @@
+android_resource
+=================
+
 一个android_resource()规则用来打包Android资源文件（传统的是在res和assets目录下）
 
 android_resource()输出是一个通过aa[t -- output-text-symbols 生成的R.txt文件。
