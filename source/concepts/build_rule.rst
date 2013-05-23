@@ -3,9 +3,7 @@
 
 一个构建规则是从一系列输入产生输出的处理流程。
 
-Buck有一些内建的常用的构建Android程序的构建规则。例如，基于Andorid 
-
-SDK编译Java代码是最常用的操作，所以存在android_library来帮助做这些事情。类似的，许多Android开发者都要创建APK，所以android_library可以干这个。
+Buck有一些内建的常用的构建Android程序的构建规则。例如，基于Andorid SDK编译Java代码是最常用的操作，所以存在android_library来帮助做这些事情。类似的，许多Android开发者都要创建APK，所以android_library可以干这个。
 
 构建规则用python函数描述在构建文件中。（Python函数定义了规则，然后相对应的Java对象根据这些规则进行处理，虽然技术上是不同的东西）、每个构建规则至少有三个下面的参数：
 
