@@ -9,7 +9,7 @@ java_library
 - srcs(默认是[])这个规则编译的java文件集合
 - resource 默认是[] 包含在已编译的.class文件里的静态文件。这些文件可以用Class.getResource进行装载
 
-注意 buck用buckconfig.html里的src_roots来帮助确定哪里的resource应该被放置到生成的jar文件里面
+**注意** buck用buckconfig.html里的src_roots来帮助确定哪里的resource应该被放置到生成的jar文件里面
 
 - deps( 默认是[])规则。（通常是另外一个java_library）用来生成编译这个java_library需要的classpath
 - source(默认是'6') 编译用的Java语言版本。对于javac的 source 参数

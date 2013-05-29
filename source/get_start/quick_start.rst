@@ -128,7 +128,7 @@ Buck需要一个应用这些资源的途经，所以我们需要建立一个构�
 
 为了保持简单，我们会为调试创建一个自签名的证书。不幸的是，这不是一行命令就能搞定的，因为keytool命令有一堆提示。(译者注：如果Keytool提示乱码的话，简体中文用户请在此步把Console的语系改成GB2312，繁体中文用户改成Big5试试)
 
- ::
+::
    
     keytool -genkey -keystore apps/myapp/debug.keystore -alias my_alias \
           -keyalg RSA -keysize 2048 -validity 10000

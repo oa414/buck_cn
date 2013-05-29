@@ -55,12 +55,12 @@
             
   <div class="section" id="gen-aidl">
 <h1>gen_aidl<a class="headerlink" href="#gen-aidl" title="Permalink to this headline">¶</a></h1>
-<p>一个gen_aidl文件用来从.aidl文件生产.java文件。它不久之后就会被废弃，其功能会被android_libray吸收。</p>
+<p>一个gen_aidl文件用来从.aidl文件生产.java文件。它不久之后就会被废弃，其功能会被android_libray取代。</p>
 <p>参数</p>
 <ul class="simple">
-<li>name（必须） 规则的名字</li>
-<li>aidl(必须) 需要转换成.java文件的aidl文件的路径</li>
-<li>import_path(必须)引入对aidl声明的搜索路径（相当于- I 参数，当从命令行调用aidl的时候）</li>
+<li>name（必要） 规则的名字</li>
+<li>aidl(必要) 需要转换成.java文件的aidl文件的路径</li>
+<li>import_path(必要)引入对aidl声明的搜索路径（相当于- I 参数，当从命令行调用aidl的时候）</li>
 <li>deps(默认是[]) 一个必须在此规则构建之前构建的规则的列表</li>
 <li>visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。</li>
 </ul>

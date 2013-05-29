@@ -26,7 +26,9 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Buck Document Chinese Translation 0.0.1 documentation" href="../index.html" />
-    <link rel="prev" title="下载和安装Buck" href="../install.html" /> 
+    <link rel="up" title="观念" href="index.html" />
+    <link rel="next" title="构建目标" href="build_target.html" />
+    <link rel="prev" title="观念" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,9 +38,13 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../install.html" title="下载和安装Buck"
+          <a href="build_target.html" title="构建目标"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="观念"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li> 
+        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">观念</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -50,8 +56,7 @@
   <div class="section" id="id1">
 <h1>构建规则<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>一个构建规则是从一系列输入产生输出的处理流程。</p>
-<p>Buck有一些内建的常用的构建Android程序的构建规则。例如，基于Andorid</p>
-<p>SDK编译Java代码是最常用的操作，所以存在android_library来帮助做这些事情。类似的，许多Android开发者都要创建APK，所以android_library可以干这个。</p>
+<p>Buck有一些内建的常用的构建Android程序的构建规则。例如，基于Andorid SDK编译Java代码是最常用的操作，所以存在android_library来帮助做这些事情。类似的，许多Android开发者都要创建APK，所以android_library可以干这个。</p>
 <p>构建规则用python函数描述在构建文件中。（Python函数定义了规则，然后相对应的Java对象根据这些规则进行处理，虽然技术上是不同的东西）、每个构建规则至少有三个下面的参数：</p>
 <ul class="simple">
 <li>name 构建规则的名字，必须是构建文件里面唯一的</li>
@@ -71,8 +76,11 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../install.html"
-                        title="previous chapter">下载和安装Buck</a></p>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">观念</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="build_target.html"
+                        title="next chapter">构建目标</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/concepts/build_rule.txt"
@@ -102,9 +110,13 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../install.html" title="下载和安装Buck"
+          <a href="build_target.html" title="构建目标"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="观念"
              >previous</a> |</li>
-        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li> 
+        <li><a href="../index.html">Buck Document Chinese Translation 0.0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >观念</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

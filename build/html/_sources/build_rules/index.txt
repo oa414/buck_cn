@@ -2,8 +2,6 @@
 =====
 
 
-
-
 .. toctree::
 
 	android_binary

@@ -6,7 +6,7 @@ prebuilt_native_library
 参数
 ----
 
-- name （必须） 规则的名字
+- name （必要） 规则的名字
 - native_libs (默认是None) 包含native 库的目录路径。这个目录对于不同的
 - CPU架构有不同的字母里，比如armeabi和armeabi-v7a
 -  visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。

@@ -18,9 +18,7 @@ project_config
 - ['src'] 构建文件目录下的源码目录，这是一个有多个元素的列表，但是实际上，它应该总是包含了最多一个元素。选项支持多个元素是为了检查导入的传递性。在这种情况下，src_roots会是['src', 'src-gen'].
 
 
-
 - test_target (默认是None) 定义项目的测试项目。在Intellij里，即使classpaths不同，源代码和测试代码也可以在同一个moudle里，在Elipese，源代码和测试代码必须在不同的目录里，因为classpath不同
-
 - test_roots (默认是 []) 等同于 src_roots, 但是目标是test_target.
 
 
@@ -28,7 +26,7 @@ project_config
 
 
 例子
-===
+----
 
 ::
 

@@ -39,7 +39,7 @@
 编译Java
 --------
 
-Android应用通常是用Java写的，所以手贱我们设置Buck来面向Android API来编译Java。Buck需要知道你的Android SDK在哪里。假设你的Android安装在~/android-macosx-sdk，运行下面的命令来建立一个local.properties来告诉Buck从哪里找Android SDK。
+Android应用通常是用Java写的，所以首先我们设置Buck来面向Android API来编译Java。Buck需要知道你的Android SDK在哪里。假设你的Android安装在~/android-macosx-sdk，运行下面的命令来建立一个local.properties来告诉Buck从哪里找Android SDK。
 
 ::     
 
@@ -68,13 +68,25 @@ Android应用通常是用Java写的，所以手贱我们设置Buck来面向Andro
 
 现在我们需要一个构建文件来定义编译Java代码的构建规则，所以我们在java/com/example/activity/BUCK里简历android_library()规则。
 
+::
+
+  echo "android_library(
+    name = 'activity',
+    srcs = glob(['*.java']),
+    visibility = [ 'PUBLIC' ],
+  )
+
+  project_config(
+    src_target = ':activity',
+  )" > java/com/example/activity/BUCK
+
 现在我们可以用Buck编译Java代码了。
 
 ::
    
     buck build //java/com/example/activity:activity
 
-注意：Buck在buck-out命令产生它的输出文件，所以现在应该在你的版本控制系统里忽略到buck-out文件。
+注意：Buck在buck-out目录产生它的输出文件，所以现在应该在你的版本控制系统里忽略到buck-out文件。
 
 包资源
 -------
@@ -114,11 +126,11 @@ Buck需要一个应用这些资源的途经，所以我们需要建立一个构�
 
 我们会建立一个应用特定的信息，比如密钥和manifest，为了保持整洁所以在他们自己的目录下。
 
-为了保持简单，我们会为调试创建一个自签名的证书。不信的是，这不是一行就能搞定的，因为keytool命令有一堆提示。(译者注：如果Keytool提示乱码的话，简体中文用户请在此步把Console的语系改成GB2312，繁体中文用户改成Big5试试)
+为了保持简单，我们会为调试创建一个自签名的证书。不幸的是，这不是一行命令就能搞定的，因为keytool命令有一堆提示。(译者注：如果Keytool提示乱码的话，简体中文用户请在此步把Console的语系改成GB2312，繁体中文用户改成Big5试试)
 
- ::
+::
    
-      keytool -genkey -keystore apps/myapp/debug.keystore -alias my_alias \
+    keytool -genkey -keystore apps/myapp/debug.keystore -alias my_alias \
           -keyalg RSA -keysize 2048 -validity 10000
 
 当提示了keysotre的密码，就用android把（然后打2次确认），然后按回车确认默认的名字，组织这些。

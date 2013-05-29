@@ -5,12 +5,12 @@ apk_genrule
 参数
 ---
 
-- 名字（要求）规则的名字
-- apk（要求）输入的android_binary()规则。产APK的路径可以关联到$APK shell变量
-- srcs(要求) 等同与genrule().
-- deps(要求) 等同与genrule().
-- cmd(要求) 等同与genrule().
-- cout(要求) 等同与genrule().
+- 名字（必要）规则的名字
+- apk（必要）输入的android_binary()规则。产APK的路径可以关联到$APK shell变量
+- srcs(必要) 等同与genrule().
+- deps(必要) 等同与genrule().
+- cmd(必要) 等同与genrule().
+- cout(必要) 等同与genrule().
 - visibility (默认是[])， 构建目标模式的列表，用来定义这个规则是否能被包含在其他构建规则里面。
 
 例子

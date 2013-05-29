@@ -1,6 +1,5 @@
 android_binary() 
 =====================
-An android_binary() rule is used to generate an Android APK.
 
 一个android_binary()规则用来生成一个Android APK.
 
@@ -8,8 +7,8 @@ An android_binary() rule is used to generate an Android APK.
 ----
 
 - name（必须）规则的名字，也是这个规则产生的apk的名字。
-- manifest(必须) Andorid manifest的相对路径，通常情况下会和android_binary()在同一个目录，在这种情况下可以简单写成‘AndroidManifest.xml’
-- target(必须)构建APK的目标Android版本。在传统Android 项目中，通常在project.properties文件定义，通常是类似Google Inc.:Google APIs:16
+- manifest(必须) Andorid manifest的相对路径，通常情况下会和android_binary()在同一个目录，在这种情况下可以简单写成 ``AndroidManifest.xml``
+- target(必须)构建APK的目标Android版本。在传统Android 项目中，通常在project.properties文件定义，通常是类似 ``Google Inc.:Google APIs:16``
 - keystore_properties(必须) 定义keystore属性的.properties文件的相对路径。
 
 ::
@@ -21,9 +20,9 @@ An android_binary() rule is used to generate an Android APK.
 
 注意key.store的值必须是keystore自己的相对路径。
 
-更多细节请看Quick_Start.
+更多细节请看 :doc:`../get_start/quick_start`
 
-- package_type(默认是debug), 决定是否在打包apk的时候用ProGuard.package_type允许的值是'debug'和'release'.默认的值是debug，指定ProGuard不运行
+- package_type(默认是debug), 决定是否在打包apk的时候用ProGuard.package_type允许的值是 ``debug`` 和 ``release`` .默认的值是debug，指定ProGuard不运行
 
 注意 这个参数将会被重命名来直观地反映是用来确定运行ProGuard的
 

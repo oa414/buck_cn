@@ -77,7 +77,7 @@ cd ~/my-first-buck-project/</pre>
 </div>
 <div class="section" id="java">
 <h2>编译Java<a class="headerlink" href="#java" title="Permalink to this headline">¶</a></h2>
-<p>Android应用通常是用Java写的，所以手贱我们设置Buck来面向Android API来编译Java。Buck需要知道你的Android SDK在哪里。假设你的Android安装在~/android-macosx-sdk，运行下面的命令来建立一个local.properties来告诉Buck从哪里找Android SDK。</p>
+<p>Android应用通常是用Java写的，所以首先我们设置Buck来面向Android API来编译Java。Buck需要知道你的Android SDK在哪里。假设你的Android安装在~/android-macosx-sdk，运行下面的命令来建立一个local.properties来告诉Buck从哪里找Android SDK。</p>
 <div class="highlight-python"><pre>echo -n sdk.dir= &gt; local.properties &amp;&amp; \
 echo ~/android-macosx-sdk &gt;&gt; local.properties</pre>
 </div>
@@ -97,10 +97,20 @@ public class MyFirstActivity extends Activity {
 }" &gt; java/com/example/activity/MyFirstActivity.java</pre>
 </div>
 <p>现在我们需要一个构建文件来定义编译Java代码的构建规则，所以我们在java/com/example/activity/BUCK里简历android_library()规则。</p>
+<div class="highlight-python"><pre>echo "android_library(
+  name = 'activity',
+  srcs = glob(['*.java']),
+  visibility = [ 'PUBLIC' ],
+)
+
+project_config(
+  src_target = ':activity',
+)" &gt; java/com/example/activity/BUCK</pre>
+</div>
 <p>现在我们可以用Buck编译Java代码了。</p>
 <div class="highlight-python"><pre>buck build //java/com/example/activity:activity</pre>
 </div>
-<p>注意：Buck在buck-out命令产生它的输出文件，所以现在应该在你的版本控制系统里忽略到buck-out文件。</p>
+<p>注意：Buck在buck-out目录产生它的输出文件，所以现在应该在你的版本控制系统里忽略到buck-out文件。</p>
 </div>
 <div class="section" id="id2">
 <h2>包资源<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
@@ -130,12 +140,10 @@ project_config(
 <h2>构建一个密钥<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>实际上，你需要在物理设备上测试你的Android 应用，所以应用需要被签名。</p>
 <p>我们会建立一个应用特定的信息，比如密钥和manifest，为了保持整洁所以在他们自己的目录下。</p>
-<p>为了保持简单，我们会为调试创建一个自签名的证书。不信的是，这不是一行就能搞定的，因为keytool命令有一堆提示。(译者注：如果Keytool提示乱码的话，简体中文用户请在此步把Console的语系改成GB2312，繁体中文用户改成Big5试试)</p>
-<blockquote>
-<div><div class="highlight-python"><pre>keytool -genkey -keystore apps/myapp/debug.keystore -alias my_alias \
-    -keyalg RSA -keysize 2048 -validity 10000</pre>
+<p>为了保持简单，我们会为调试创建一个自签名的证书。不幸的是，这不是一行命令就能搞定的，因为keytool命令有一堆提示。(译者注：如果Keytool提示乱码的话，简体中文用户请在此步把Console的语系改成GB2312，繁体中文用户改成Big5试试)</p>
+<div class="highlight-python"><pre>keytool -genkey -keystore apps/myapp/debug.keystore -alias my_alias \
+      -keyalg RSA -keysize 2048 -validity 10000</pre>
 </div>
-</div></blockquote>
 <p>当提示了keysotre的密码，就用android把（然后打2次确认），然后按回车确认默认的名字，组织这些。</p>
 <p>然后建立一个.properties文件存储这些信息。</p>
 <div class="highlight-python"><pre>echo "key.store=debug.keystore
