@@ -4,7 +4,7 @@ buck project
 
 现在，只支持Intellij
 
-这个命令处理所有BUCK文件的project_config规则并且用它们产生IDE的配置文件。
+这个命令处理所有BUCK文件的 :doc:`../build_rules/project_config` 规则并且用它们产生IDE的配置文件。
 
 对于Intellij，产生的文件包含
 

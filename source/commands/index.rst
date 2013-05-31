@@ -14,6 +14,7 @@
 	targets
 	test
 	unistall
+	buckd
 
 
 

@@ -3,6 +3,11 @@ buck audit
 
 提供构建目标和输出的构建信息
 
+::
+
+	buck audit input //java/com/example/app:amazing
+
+
 
 Buck会输出给定目标的源代码路径。
 

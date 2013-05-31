@@ -10,7 +10,8 @@ build test
 -----
 
 --all 如果有该参数，Buck会运行目录树下所有测试
---code-coverage  当运行测试的时候收集代码覆盖程度。当前，只能用emma来执行。在运行
+--code-coverage  当运行测试的时候收集代码覆盖程度。当前，只能用`EMMA <http://emma.sourceforge.net/>`_ 来执行。在运行
+
 ::
 
 	buck test --all --code-coverage
@@ -26,7 +27,7 @@ build test
 
 	buck test --all --include fast
 
-来运行所有快速的测试。更多内容请见java_test()
+来运行所有快速的测试。更多内容请见 :doc:`../build_rules/java_test`
 
 
 
