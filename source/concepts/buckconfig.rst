@@ -5,7 +5,7 @@ buckconfig
 
 [alias]
 -------
-作为Quick Start的一个演示，编译目标的aliases可以定义在.buckconfig里面。
+作为 :doc:`../get_start/quick_start` 的一个演示，编译目标的aliases可以定义在.buckconfig里面。
 
 
 ::
@@ -33,7 +33,7 @@ buckconfig
 	[buildfile]
 	  includes = //core/DEFS
 
-它的效果是和在每个构建文件的开头手动调用include_defs('//core/DEFS')是一样的。更多内容请见 include_defs()。
+它的效果是和在每个构建文件的开头手动调用 ``include_defs('//core/DEFS')`` 是一样的。更多内容请见 include_defs()。
 
 
 
@@ -73,28 +73,29 @@ buckconfig
 -  scripts/init_cassandra_node.cql 脚本必须运行一次，来创建buck使用的ArtifactCache区块。
 
 
-buckconfig
-===========
 
 [java]
 ----
 这个选项用来定义java代码的根路径，路径可以由逗号隔开。/开头的路径表示和项目根目录的相关路径，这是一个逗号分割的列表，路径是以/（表示项目根目录）的相对路径。比如 
 
+::
 
-[java]
-  src_roots = src, /java/, /javatests/
+  [java]
+    src_roots = src, /java/, /javatests/
 
  会匹配项目根目录下的java和javatests路径。同时也会匹配所有的src文件夹
 
  注意：这个主要是用来帮助决定是否用一个JAR文件取代java_library()规则的，src_root可能被移去。
 
  [project]
+ -----------
 
  这一节用来定义default_android_manifest来标识AndroidManifest.xml，如果一个Android规则里project_config()的src_target用到的话。但是构建文件的目录里面不会有AndroidManifest.xml文件。因为一个Android项目的IDE配置文件需要一个AndroidManifest.xml，这提供了一个妥协的方案，防止你的项目用一个样板AndroidManifest.xml文件
 
+::
 
- [project]
-  default_android_manifest = //shared/AndroidManifest.xml
+  [project]
+     default_android_manifest = //shared/AndroidManifest.xml
 
 
 
@@ -103,8 +104,11 @@ buckconfig
   比如，如果你有一个用来从Thrife定义文件（ Thrift definition file）产生JAR的genrule，
 并且你有一个依赖于此JAR的java_library()规则，你必须确保在把项目导入到Intellij IDLE之前构建genrule()因为Intellij 不知道如何构建genrule()
 
-[project]
-  initial_targets = //java/com/facebook/schema:generate_thrift_jar
+
+::
+
+  [project]
+    initial_targets = //java/com/facebook/schema:generate_thrift_jar
 
 
 

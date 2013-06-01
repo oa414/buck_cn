@@ -1,8 +1,11 @@
 FAQ
 =====
+**Q: 为什么它叫Buck**
+
+A: buck和单词build(构建）很像而且能很快打出来，并且它可能有潜在的了不起的吉祥物
 
 
-Q: 为什么Buck不支持Windows。
+**Q: 为什么Buck不支持Windows**
 
 A: 要让Buck支持Windows，有很多工作还要做：
 
@@ -22,7 +25,7 @@ A: 要让Buck支持Windows，有很多工作还要做：
 
 虽然有那么多额外的活，我们还是希望未来能支持Windows。
 
-Q：为么么Buck用Ant构建而不是Buck？
+**Q：为么么Buck用Ant构建而不是Buck**？
 
 A: 自举的系统将会更难维护和调试。
 

@@ -11,7 +11,7 @@ Buck有一些内建的常用的构建Android程序的构建规则。例如，基
 - deps 构建规则的依赖，是一个构建目标的列表
 - visibility 允许是否允许这个构建规则成为一个依赖，表达为一个构建目标模式的列表
 
-在Buck里面，每个构建规则可以产生0个或者1个输出文件，输出文件可以用来为其他构建规则作为依赖。比如，android_library的输出是一个JAR文件，所以android_binary定义android_library作为它的依赖，所以他可以在其APK包里包含android_library输出JAR包里面的class文件。如果一个android_library依赖另外一个，它的依赖规则里面的JAR会在编译的时候被包含到classpath中。具体可以看文档。使用deps没有什么问题，所有的规则的deps会保证在其之前构建。
+在Buck里面，每个构建规则可以产生0个或者1个输出文件，输出文件可以用来为其他构建规则作为依赖。比如，android_library的输出是一个JAR文件，所以 :doc:`../build_rules/android_binary` 定义 :doc:`../build_rules/android_library` 作为它的依赖，它就可以在其APK包里包含android_library输出JAR包里面的class文件。如果一个android_library依赖另外一个，它的依赖规则里面的JAR会在编译的时候被包含到classpath中。具体可以看文档。使用deps没有什么问题，所有的规则的deps会保证在其之前构建。
 
 构建规则和它们的依赖定义了一个有向图，Buck需要它是无环的。这可以让Buck更有效的进行构建工作，并且可以让独立的子图进行并行的构建。
 
