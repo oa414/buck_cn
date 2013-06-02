@@ -6,7 +6,7 @@
 
 注意：虽然构建文件是合法的Python并且可以做任何事情（写文件，访问网络这些），但是这些事可能让Buck出一些意外的问题，所以不鼓励这样做。
 
-比如，定义一个叫做java_library_using_guava的宏来构建一个依赖Guava的java_library构建规则.
+比如，定义一个叫做 ``java_library_using_guava`` 的宏来构建一个依赖Guava的 ``java_library`` 构建规则.
 
 
 
@@ -98,7 +98,7 @@ def java_library_using_guava(
       ],
     )
 
-注意，如果这些定义在apps/messenger/BUCK里面，这会创建以下的构建规则：
+注意，如果这些定义在 ``apps/messenger/BUCK`` 里面，这会创建以下的构建规则：
 
 
 ::

@@ -3,15 +3,17 @@ genfile()
 
 genfile()函数用来定义一个genrule()的输出文件
 
+
 参数
 ------
 
-第一个也是唯一一个参数是genrule()或者gen_aidl()规则输出的文件名
+第一个也是唯一一个参数是 :doc:`../build_rules/genfile` 
+或者 :doc:`../build_rules/gen_aidl` 则输出的文件名
 
 例子
 --------
 
-下面的例子里面，一个叫messenger_manifest用来在buck-out/gen/目录下生成一个叫AndroidManifest.xml的文件，这个文件是用来作为messager构建规则的messager。路径必须被gemfile函数包括，所以android_binary()用buck-out/gen里面的AndroidManifest.xml而不是构建文件下的那个。
+下面的例子里面，一个叫messenger_manifest用来在 ``buck-out/gen/ `` 目录下生成一个叫 ``AndroidManifest.xml ``的文件，这个文件是用来作为messager构建规则的messager。路径必须被gemfile函数包括，所以android_binary()用buck-out/gen里面的 `` AndroidManifest.xml ``而不是构建文件下的那个。
 
 ::
 

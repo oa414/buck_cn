@@ -15,7 +15,7 @@
 
 - Null
   - 所有引用都是假设为非null的，除了另外说明
-  - 用Preconditions.checkNotNull().来确认非空参数。
+  - 用Preconditions.checkNotNull(). ( http://docs.guava-libraries.googlecode.com/git-history/v14.0/javadoc/com/google/common/base/Preconditions.html#checkNotNull(T) )来确认非空参数。
   -一个可能为null的引用应该有@javax.annotation.Nullable.的注解
   - @Nullable的一个好的替代是com.google.common.base.Optional.
   - 注解是可选的
@@ -23,7 +23,7 @@
  - API
    - 可以自由的使用Guava库
    - 特别的，请尽量用Guava的不可变的集合。同时为了避免赋值的bug，它们不允许null作为一个元素。
-   - 不要用Logger, log4j，用com.facebook.buck.cli.Console来打印日志，并且声明--verbosity标志
+   - 不要用Logger, log4j，用 ``com.facebook.buck.cli.Console`` 来打印日志，并且声明--verbosity标志
 
  - 注释
 
